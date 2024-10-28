@@ -1,22 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Beranda;
+use App\Livewire\User;
+use App\Livewire\Laporan;
+use App\Livewire\Produk;
+use App\Livewire\Transaksi;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::Routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', beranda::class)->middleware(['auth'])->name('home');
+Route::get('/user', user::class)->middleware(['auth'])->name('user');
+Route::get('/laporan', laporan::class)->middleware(['auth'])->name('laporan');
+Route::get('/produk', produk::class)->middleware(['auth'])->name('produk');
+Route::get('/transaksi', transaksi::class)->middleware(['auth'])->name('transaksi');
